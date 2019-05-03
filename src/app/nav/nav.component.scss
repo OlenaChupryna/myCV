@@ -1,0 +1,56 @@
+@import '../config';
+
+
+
+header {
+
+    .container {
+        width: 100%;
+        margin: 0 auto; 
+        padding: 1em 0;       
+        display: grid;
+        grid-template-columns: 1fr 8fr;
+        column-gap: 20px;     
+        background-color: $main-dark-color;        
+        font-family: 'Satisfy', cursive;    
+        font-weight: 700;
+        font-size: 1em; 
+        @include use-for-screen (650px) {      
+            font-size: 1.1em;
+        }
+        @include use-for-screen {      
+        font-size: 1.2em;
+        }
+
+        .logo {        
+            padding-left: 30px;  
+            color:$main-light-color;  
+            &:hover {
+                color: $additional-color;
+            }
+
+        }
+        
+        nav {
+            justify-self: right;     
+                padding-right: 30px;  
+            ul {
+                list-style-type: none;        
+                
+                li {
+                    float: left;
+
+                    a {
+                        padding: .5em;
+                        //text-transform: uppercase;  
+                        color:$main-light-color;           
+
+                        &:hover {
+                            color: $additional-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

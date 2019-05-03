@@ -1,0 +1,68 @@
+@import '../config';
+
+.greeting {  
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-column-gap: 20px;
+  width: 100%;
+  padding: 10px 0 15px;
+  font-size: medium;  
+
+  .my-photo {
+    width: 100%;
+    min-width: 55px;
+    border-radius: 30%;
+    border: 5px solid $main-dark-color; 
+    background-clip: border-box;
+    align-self: center;
+  }
+
+  .info {
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+    color:$main-color; 
+    padding: 0 10px;
+    @include use-for-screen (650px) {      
+      font-size: 1.15em;
+    }
+    @include use-for-screen {      
+      font-size: 1.35em;
+    }
+ 
+    .main-text {
+      width: 95%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 5fr;
+      grid-column-gap: 20px;
+ 
+      h1 {
+        text-align: center;
+        justify-self: start;
+        align-self: center;             
+      }
+      img {
+        height: 2em;
+        align-self: center;  
+        justify-self: end;
+          
+      }
+      .additional-text {
+        padding-top: 20px;
+        line-height: 1;
+      }
+    }
+    .narrative {    
+      padding-top: 10px;    
+      text-indent: 20px;
+      text-align: justify;
+      color: $main-dark-color;
+      line-height: 1;      
+    }
+  }
+}
+
+section {
+  width: 100%;
+  padding: 0;
+}

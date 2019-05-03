@@ -1,0 +1,184 @@
+@import "../config";
+
+@mixin clip-path($path) {
+  -webkit-clip-path: $path;
+  clip-path: $path;
+}
+
+$language-clip-path: polygon(17% 0, 100% 0%, 100% 100%, 17% 100%, 16% 65%, 0 49%, 17% 45%);
+$courses-clip-path: polygon(13% 0, 100% 0%, 100% 100%, 13% 100%, 13% 72%, 0 31%, 13% 39%);
+$education-clip-path: polygon(13% 0, 100% 0%, 100% 100%, 13% 100%, 13% 63%, 0 65%, 13% 39%);
+
+.knowledge {
+  width: 100%;  
+  display: grid;
+  grid: repeat(3, 1fr)/1fr 3fr 1fr;
+  grid-template-areas: " courses courses courses"  
+  " . languages languages"
+  " education education .";
+  padding: 5px 0;
+  font-size: .7em;
+  @include use-for-screen (650px) {      
+    font-size: .8em;
+  }
+  @include use-for-screen {      
+    font-size: 0.9em;
+    grid: 1fr 1fr/1fr 3.5fr 3fr 1fr;
+    grid-template-areas: ". courses courses ."
+    "education education languages languages";
+  }  
+
+  section {
+    padding-top: 2px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 2px;
+    align-items: center;
+  }
+  
+  .wrap {   
+    background-color: $main-dark-color;  
+    position: relative;    
+    width: 100%;
+    height: 100%;
+
+    .clip {
+      background-color: $additional-color;
+      position: absolute;      
+      top: 1%;
+      left: 1%;
+      width: 98%;
+      height: 98%;
+      padding-left: 20%;
+      color: $main-light-color;      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }  
+      ul {
+        padding: 0 10%;      
+      }
+      li {
+        padding: 2% 0;  
+        text-align: justify;
+      }   
+  }  
+    button.hideButton {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      display: block;
+      width: 14px;
+      height: 14px;
+      padding: 0;
+      font-family: sans-serif;      
+      color: $main-light-color;
+      font-size: 8px;
+      background-color: $main-dark-color;
+      border: solid 1px $main-light-color;    
+      @include use-for-screen {         
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+      }
+    }
+
+  .education {
+    grid-area: education;    
+    .accessory {
+      width: .6*$base-width;
+      height: .2*$base-width;
+      min-width: 220px;
+      min-height: 150px;
+      @include use-for-screen () {      
+        width: .39*$base-width;
+        height: .22*$base-width;
+      } 
+      @include use-for-screen (998px) {      
+        width: .33*$base-width;
+        height: .145*$base-width; 
+      }  
+    }
+    .wrap {
+      @include clip-path ($education-clip-path);          
+      
+      .clip  {
+        @include clip-path ($education-clip-path);          
+        padding-left: 12%;        
+      }      
+    }
+
+    button:not(.hideButton) {            
+      margin-top: .075*$base-width;   
+      @include use-for-screen (998px) {      
+        margin-top: .05*$base-width; 
+      }        
+    } 
+  }
+
+  .languages {
+    grid-area: languages;  
+    
+    .accessory {
+      width: .39*$base-width;
+      height: .26*$base-width;
+      min-width: 156px;
+      min-height: 108px;
+      @include use-for-screen (650px) {      
+        width: .30*$base-width;
+        height: .22*$base-width;
+      } 
+      @include use-for-screen (998px) {      
+        height: .145*$base-width; 
+      } 
+    }
+    .wrap, .clip  {
+      @include clip-path ($language-clip-path);          
+    }   
+  }
+  
+  .courses {
+    grid-area: courses;
+    .accessory {
+      width: .8*$base-width;
+      height: .35*$base-width;
+      min-width: 320px;
+      min-height: 140px; 
+      @include use-for-screen () {   
+        width: .75*$base-width;
+        height: .25*$base-width;
+      }
+      @include use-for-screen (998px) {      
+        height: .125*$base-width; 
+      }      
+    }
+    .wrap{
+      @include clip-path ($courses-clip-path);       
+      .clip  {
+        @include clip-path ($courses-clip-path);         
+        left: .5%;
+        width: 99%;             
+        padding-left: 12%;
+        ul {
+          padding: 0 7%;             
+        }
+        li {
+          padding: 1px 0;
+          @include use-for-screen (650px) {      
+            padding: 3px 0;
+          }             
+        } 
+      }   
+    } 
+
+    button:not(.hideButton) {          
+      margin-top: -.12*$base-width;  
+      @include use-for-screen () {   
+        margin-top: -.085*$base-width; 
+      }
+      @include use-for-screen (998px) {      
+        margin-top: -.05*$base-width; 
+      }          
+    }
+  }
+}
