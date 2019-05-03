@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import 'app/config';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {        
+    background-color:$main-light-color;
+    min-width: 400px;
+}
+
+a {text-decoration: none;}
+
+section {
+    width: 96%;
+    margin: 0 auto;   
+}
+
+h2 {
+    @include header();       
+    text-align: center;
+}
+
+h3 {@include header();}
+
+button {    
+    padding: 5px;
+    border: solid 2px $main-dark-color;
+    border-radius: 2px;
+    background-color: lighten($main-dark-color, 45%);
+    font-family: 'Satisfy', cursive;
+    color: $main-dark-color;
+    font-weight: bold; 
+    cursor: pointer;   
+}
+[type=checkbox] {
+    cursor: pointer;  
+}
+
