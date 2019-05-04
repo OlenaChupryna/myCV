@@ -14,7 +14,4 @@ export class DataService {
   getUsers(): Observable<ILanguage[]> {
     return this.http.get<ILanguage[]>(this._url);
   }
-  // firstClick(data: boolean): boolean {
-  //   return !data;
-  // }
 }
