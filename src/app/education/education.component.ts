@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
-import { trigger, state, style, animate, transition, group } from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ICourse } from '../interfaces';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
@@ -22,7 +24,8 @@ import { ICourse } from '../interfaces';
     )
   ]
 })
-export class EducationComponent implements OnInit {
+export class EducationComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
 
   languages = [];
   isDataReceived = false;
@@ -39,15 +42,19 @@ export class EducationComponent implements OnInit {
   constructor(private _dataSevice: DataService) { }
 
   ngOnInit() { }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
   fetchData() {
     if (!this.isDataReceived) {
-      this._dataSevice.getUsers()
+      this.subscription = this._dataSevice.getUsers()
         .subscribe(
           data => {
             this.languages = data;
             this.isDataReceived = true;
-
           },
           err => console.log(err));
     }
@@ -68,5 +75,4 @@ export class EducationComponent implements OnInit {
   hideCourses() {
     this.isCoursesVisible = false;
   }
-
 }
