@@ -1,15 +1,16 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SkillsService } from '../skills.service';
 import { ISkill } from '../interfaces';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
-export class SkillsComponent implements OnInit, AfterViewInit {
+export class SkillsComponent implements OnInit, AfterViewInit, OnDestroy {
+  private subscription: Subscription;
   skillsForm: FormGroup;
   allSkills: ISkill[] = [];
   visibleSkills: ISkill[] = [];
@@ -28,6 +29,10 @@ export class SkillsComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit() {
     this.bindObservable();
+  }
+  ngOnDestroy() {
+    this.skillsService.chosenSkills = [];
+    this.subscription.unsubscribe();
   }
 
   goTo() {
@@ -54,16 +59,18 @@ export class SkillsComponent implements OnInit, AfterViewInit {
 
       let observable = fromEvent(element, 'change');
 
-      observable.subscribe((event) => {
-        if ((<HTMLInputElement>event.target).checked) {
-          this.skillsService.addChousenSkill((<HTMLInputElement>event.target).name);
-          this.visibleSkills = this.skillsService.getChousenSkills();
-        } else {
-          this.skillsService.removeChousenSkill((<HTMLInputElement>event.target).name);
-          this.visibleSkills = this.skillsService.getChousenSkills();
-        }
-      })
+      this.subscription = observable.subscribe(
+        event => {
+          if ((<HTMLInputElement>event.target).checked) {
+            this.skillsService.addChousenSkill((<HTMLInputElement>event.target).name);
+            this.visibleSkills = this.skillsService.getChousenSkills();
+          } else {
+            this.skillsService.removeChousenSkill((<HTMLInputElement>event.target).name);
+            this.visibleSkills = this.skillsService.getChousenSkills();
+          }
+        },
+        err => console.log(err)
+      )
     })
   }
-
 }

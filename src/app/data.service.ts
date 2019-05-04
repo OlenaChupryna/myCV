@@ -13,5 +13,5 @@ export class DataService {
 
   getUsers(): Observable<ILanguage[]> {
     return this.http.get<ILanguage[]>(this._url);
-  }
+  } 
 }
