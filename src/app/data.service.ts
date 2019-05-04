@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private _url: string = "/assets/data/languages.json";
+  private _url: string = "./assets/data/languages.json";
 
   constructor(private http: HttpClient) { }
 
