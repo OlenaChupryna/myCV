@@ -21,27 +21,14 @@ import { ICourse } from '../interfaces';
     ]
     )
   ]
-
-  // [
-  //   trigger('handWave', [
-  //     state('initial', style({
-  //       transform: "rotate(0deg)"
-  //     })),
-  //     state('final', style({
-  //       transform: "rotate(45deg)"
-  //     })),
-  //     transition('initial=>final', animate('500ms')),
-  //     transition('final=>initial', animate('500ms')),
-  //   ])
-  // ],
 })
 export class EducationComponent implements OnInit {
 
   languages = [];
-  protected isDataReceived = false;
-  protected isDataVisible = false;
-  protected isEducationVisible = false;
-  protected isCoursesVisible = false;
+  isDataReceived = false;
+  isDataVisible = false;
+  isEducationVisible = false;
+  isCoursesVisible = false;
   courses: ICourse[] = [
     { name: "Web UI", place: "SoftServe IT Academy", time: "December 2018-March 2019" },
     { name: "NodeJS, ReactJS and MongoDB", place: "Oracle Academy", time: "October 2018-January 2019" },
