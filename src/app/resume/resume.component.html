@@ -1,9 +1,9 @@
 <section class="greeting">
-  <!-- <img class="wave" src="../../assets/images/hand.png" [ngStyle]="{'background-image': getUrl()}"> -->
+ 
   <img class="my-photo" src="../../assets/images/photo.jpg">
   <div class="info">
     <div class="main-text">
-      <img [@handWave]=currentState (click)="wave()" (load)="wave()" src="../../assets/images/hand.svg">
+      <img [@handWave]="currentState" (click)="wave()" (load)="wave()" src="../../assets/images/hand.svg">
       <h1>Hello! I am Olena</h1>
     </div>
     <div class="additional-text">

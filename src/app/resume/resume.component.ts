@@ -29,12 +29,6 @@ export class ResumeComponent implements OnInit {
   ngOnInit() {
   }
 
-  // getUrl() {
-  //   return "url(../../assets/images/hand.png)";
-  // }
-  // getPhotoUrl() {
-  //   return "url(../../assets/images/photo.jpg)";
-  // }
   changeState() {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
   }
